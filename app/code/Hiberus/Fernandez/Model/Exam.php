@@ -50,7 +50,7 @@ class Exam extends AbstractModel implements ExamInterface
      */
     public function getLastName()
     {
-        return $this->getData('apellido');
+        return $this->getData('lastname');
     }
 
     /**
