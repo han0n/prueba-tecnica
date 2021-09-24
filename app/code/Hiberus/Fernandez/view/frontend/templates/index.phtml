@@ -5,17 +5,30 @@
 $marks = $block->getMarks();
 $total = 0;
 ?>
-<h2 class="title">Listado de notas:</h2>
 
-<ul>
-<?php foreach ($marks as $mark): ?>
-    <li>
-        <?php echo $mark->getFirstName() . " "; ?>
-        <?php echo $mark->getLastName() . " "; ?>
-        <?php echo $mark->getMark(); ?>
-    </li>
-        <?php $total++; ?>
-<?php endforeach; ?>
-</ul>
+<button id="toggle">Ocultar listado</button>
 
-<p> <?php echo __('Total number of students: ') ?> <?php echo $total .  __('.')?> </p>
+<div id="listado-notas">
+    <h2 class="title">Listado de notas:</h2>
+
+    <ul>
+    <?php foreach ($marks as $mark): ?>
+        <li>
+            <?php echo $mark->getFirstName() . " "; ?>
+            <?php echo $mark->getLastName() . " "; ?>
+            <?php echo $mark->getMark(); ?>
+        </li>
+            <?php $total++; ?>
+    <?php endforeach; ?>
+    </ul>
+
+    <p> <?php echo __('Total number of students: ') ?> <?php echo $total .  __('.')?> </p>
+</div>
+
+<script type="text/javascript">
+    require(['jquery','showjs'],function($){
+        $(window).load(function() {
+
+        });
+    });
+</script>
