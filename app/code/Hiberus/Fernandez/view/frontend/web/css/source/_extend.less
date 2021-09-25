@@ -1,0 +1,43 @@
+@pordefecto: #006bb4;
+@otro: #4d926f;
+@margin-left-primary: 20px;
+
+#listado-notas {
+    width: max-content;
+    font-family: "Courier New", Courier, monospace;
+
+    .title{ font-size: 22px; padding: 12px 0 8px 0; text-align: center}
+
+    ul {
+        margin:0; padding: 0;
+        width: max-content;
+        border: #D9D9D9 double 1px;
+        li {
+            margin:0; padding: 5px;
+            padding-top: 9px;
+            list-style: none;
+        }
+        li:nth-child(odd){
+            margin-left: @margin-left-primary;
+        }
+        li:nth-child(even){
+            background-color: #D9D9D9;
+        }
+    }
+    p{
+        padding: 10px 0 10px 0;
+        font-weight: bold;
+        text-align: end;
+    }
+}
+
+@media screen {
+    .title{ color: @pordefecto; }
+
+    @media (min-width: 768px) {
+        .title { color: @otro; }
+    }
+
+}
+
+
