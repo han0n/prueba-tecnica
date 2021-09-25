@@ -4,16 +4,26 @@
  */
 $marks = $block->getMarks();
 $total = 0;
+$mejorExamen = $block->getBestExam($marks);
 ?>
 
 <button id="toggle">Ocultar listado</button>
+<button id="btn-alert">Nota más alta</button>
 
 <div id="listado-notas">
     <h2 class="title">Listado de notas:</h2>
 
     <ul>
     <?php foreach ($marks as $mark): ?>
+        <!--Para el ejercicio 13-->
+        <?php if ($mark->getIdExam() == $mejorExamen->getIdExam()){ ?>
+            <li class="mejores">
+        <?php
+        }else{
+            ?>
         <li>
+        <?php
+        } ?>
             <?php echo $mark->getFirstName() . " "; ?>
             <?php echo $mark->getLastName() . " "; ?>
             <?php echo $mark->getMark(); ?>
@@ -24,11 +34,28 @@ $total = 0;
 
     <p> <?php echo __('Total number of students: ') ?> <?php echo $total .  __('.')?> </p>
 </div>
+<!--Aquí obtenemos la mejor nota en una etiqueta <p> para pasarsela a la función alert-->
+<p id="nota" style="display: none">
+    <?php echo $block->getBestExam($marks)->getMark(); ?>
+</p>
 
 <script type="text/javascript">
-    require(['jquery','showjs'],function($){
+    require(['jquery','showjs', 'Magento_Ui/js/modal/alert'],function($){
         $(window).load(function() {
 
         });
+
+        document.getElementById("btn-alert").addEventListener('click', function(){
+            $('#nota').alert({
+                title: $.mage.__('La mejor nota ha sido'),
+                actions: {
+                    always: function(){
+                        location.reload();
+                    }
+                }
+            });
+
+        });
+
     });
 </script>

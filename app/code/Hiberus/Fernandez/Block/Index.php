@@ -26,4 +26,28 @@ class Index extends \Magento\Framework\View\Element\Template
 
     }
 
+    public function getBestExam($exams){
+
+        $bestExam = 0;
+
+        foreach ($exams as $exam){
+
+            if($exam->getIdExam() == 1){
+                $_exam = $exam;
+                $bestExam = $exam;
+            }
+
+            if($exam->getIdExam() > 1){
+                if ($exam->getMark() > $_exam->getMark()){
+                    $bestExam = $exam;
+                }
+            }
+
+            $_exam = $exam;
+
+        }
+
+        return $bestExam;
+    }
+
 }
