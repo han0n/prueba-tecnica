@@ -6,6 +6,7 @@ $marks = $block->getMarks();
 $total = 0;
 $mejorExamen = $block->getBestExam($marks);
 $media = $block->getMarkAverage($marks);
+$suspenso = 4.9;
 ?>
 
 <button id="toggle">Ocultar listado</button>
@@ -18,12 +19,15 @@ $media = $block->getMarkAverage($marks);
     <?php foreach ($marks as $mark): ?>
         <!--Para el ejercicio 13-->
         <?php if ($mark->getIdExam() == $mejorExamen->getIdExam()){ ?>
-            <li class="mejores">
+            <li class="aprobado mejores">
         <?php
         }else{
             ?>
-        <li>
-        <?php
+            <?php if ($mark->getMark() > $suspenso){ ?>
+                <li class="aprobado">
+            <?php } else { ?>
+                <li class="suspenso">
+        <?php     }
         } ?>
             <?php echo $mark->getFirstName() . " "; ?>
             <?php echo $mark->getLastName() . " "; ?>

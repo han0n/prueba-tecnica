@@ -2,6 +2,14 @@
 @otro: #4d926f;
 @margin-left-primary: 20px;
 
+//LESS MIXIN:
+.coloreado(@parametro){
+    color: @parametro;
+}
+//APLICACIÓN DEL LESS MIXIN:
+.suspenso{ .coloreado(#a94442); }
+.aprobado{ .coloreado(@pordefecto); }
+
 #listado-notas {
     width: max-content;
     font-family: "Courier New", Courier, monospace;
@@ -16,6 +24,7 @@
             margin:0; padding: 5px;
             padding-top: 9px;
             list-style: none;
+
         }
         li:nth-child(odd){
             margin-left: @margin-left-primary;
