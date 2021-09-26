@@ -13,5 +13,9 @@
             </argument>
         </arguments>
     </type>
+    <!--Declaración del plugin-->
+    <type name="Hiberus\Fernandez\Model\Exam">
+        <plugin name="mark_plugin" type="Hiberus\Fernandez\Plugin\MarkPlugin" sortOrder="1" disabled="false" />
+    </type>
 
 </config>
