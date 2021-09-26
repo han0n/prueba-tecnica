@@ -28,7 +28,7 @@ class Index extends \Magento\Framework\View\Element\Template
 
     public function getBestExam($exams){
 
-        $bestExam = 0;
+        $bestExam = 0; //Recoje Exam, no un entero
 
         foreach ($exams as $exam){
 
@@ -48,6 +48,22 @@ class Index extends \Magento\Framework\View\Element\Template
         }
 
         return $bestExam;
+    }
+
+    public function getMarkAverage($exams){
+
+        $total = 0; //Recoje un float
+        $i = 0;
+
+        foreach ($exams as $exam){
+            $total = $total + $exam->getMark();
+            $i++;
+        }
+
+        $average = $total/$i;
+
+        return $average;
+
     }
 
 }

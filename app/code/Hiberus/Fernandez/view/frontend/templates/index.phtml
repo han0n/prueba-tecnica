@@ -5,6 +5,7 @@
 $marks = $block->getMarks();
 $total = 0;
 $mejorExamen = $block->getBestExam($marks);
+$media = $block->getMarkAverage($marks);
 ?>
 
 <button id="toggle">Ocultar listado</button>
@@ -32,7 +33,10 @@ $mejorExamen = $block->getBestExam($marks);
     <?php endforeach; ?>
     </ul>
 
-    <p> <?php echo __('Total number of students: ') ?> <?php echo $total .  __('.')?> </p>
+    <p>
+        <?php echo __('Total number of students: ') ?> <?php echo $total .  __('.')?> <br>
+        <?php echo __('Mark average: ') ?> <?php echo number_format($media, 2) ?>
+    </p>
 </div>
 <!--Aquí obtenemos la mejor nota en una etiqueta <p> para pasarsela a la función alert-->
 <p id="nota" style="display: none">
