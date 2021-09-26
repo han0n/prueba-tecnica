@@ -21,7 +21,7 @@ class UpgradeData implements UpgradeDataInterface
     {
         $setup->startSetup();
 
-        if ($context->getVersion() && version_compare($context->getVersion(), '1.1.8') < 0
+        if ($context->getVersion() && version_compare($context->getVersion(), '1.2.0') < 0
         ) {
             $tableName = $setup->getTable('hiberus_exam');
 

@@ -7,6 +7,8 @@ $total = 0;
 $mejorExamen = $block->getBestExam($marks);
 $media = $block->getMarkAverage($marks);
 $suspenso = 4.9;
+$segundoMejor = $block->getSecondBest($marks);
+$terceroMejor = $block->getThirdBest($marks);
 ?>
 
 <button id="toggle">Ocultar listado</button>
@@ -16,25 +18,32 @@ $suspenso = 4.9;
     <h2 class="title">Listado de notas:</h2>
 
     <ul>
-    <?php foreach ($marks as $mark): ?>
-        <!--Para el ejercicio 13-->
-        <?php if ($mark->getIdExam() == $mejorExamen->getIdExam()){ ?>
-            <li class="aprobado mejores">
-        <?php
-        }else{
-            ?>
-            <?php if ($mark->getMark() > $suspenso){ ?>
-                <li class="aprobado">
-            <?php } else { ?>
-                <li class="suspenso">
-        <?php     }
-        } ?>
+        <?php foreach ($marks as $mark): ?>
+            <!--Para el ejercicio 13-->
+            <?php if ( $mark->getIdExam() == $mejorExamen->getIdExam()  ||
+                       $mark->getIdExam() == $segundoMejor->getIdExam() ||
+                       $mark->getIdExam() == $terceroMejor->getIdExam() ){ ?>
+                <li class="mejores
+                <?php if ($mark->getMark() > $suspenso){ ?>
+                    aprobado">
+                <?php } else { ?>
+                    suspenso">
+                <?php } ?>
+                <?php
+            }else{
+                ?>
+                <?php if ($mark->getMark() > $suspenso){ ?>
+                    <li class="aprobado">
+                <?php } else { ?>
+                    <li class="suspenso">
+                <?php }
+            } ?>
             <?php echo $mark->getFirstName() . " "; ?>
             <?php echo $mark->getLastName() . " "; ?>
             <?php echo $mark->getMark(); ?>
-        </li>
+            </li>
             <?php $total++; ?>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
     </ul>
 
     <p>

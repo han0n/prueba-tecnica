@@ -29,21 +29,21 @@ class Index extends \Magento\Framework\View\Element\Template
     public function getBestExam($exams){
 
         $bestExam = 0; //Recoje Exam, no un entero
+        $n= 0;
+        $_exam= 0;
 
         foreach ($exams as $exam){
 
-            if($exam->getIdExam() == 1){
-                $_exam = $exam;
+            if($n == 0){
                 $bestExam = $exam;
-            }
-
-            if($exam->getIdExam() > 1){
+            }else{
                 if ($exam->getMark() > $_exam->getMark()){
                     $bestExam = $exam;
                 }
             }
 
             $_exam = $exam;
+            $n++;
 
         }
 
@@ -64,6 +64,60 @@ class Index extends \Magento\Framework\View\Element\Template
 
         return $average;
 
+    }
+
+    public function getSecondBest($exams){
+
+        $bestExam = 0; //Recoje Exam, no un entero
+        $n= 0;
+        $_exam= 0;
+
+        foreach ($exams as $exam){
+            if($exam != $this->getBestExam($exams)) {
+
+                if($n == 0){
+                    $bestExam = $exam;
+                }else{
+                    if ($exam->getMark() > $_exam->getMark()) {
+                        $bestExam = $exam;
+                    }
+                }
+
+                $_exam = $exam;
+                $n++;
+            }
+
+        }
+
+        return $bestExam;
+    }
+
+    public function getThirdBest($exams){
+
+        $bestExam = 0; //Recoje Exam, no un entero
+        $n= 0;
+        $_exam= 0;
+
+        foreach ($exams as $exam){
+            if($exam != $this->getBestExam($exams)){
+                if($exam != $this->getSecondBest($exams)) {
+
+                    if ($n == 0) {
+                        $bestExam = $exam;
+                    } else {
+                        if ($exam->getMark() > $_exam->getMark()) {
+                            $bestExam = $exam;
+                        }
+                    }
+
+                    $_exam = $exam;
+                    $n++;
+                }
+            }
+
+        }
+
+        return $bestExam;
     }
 
 }
