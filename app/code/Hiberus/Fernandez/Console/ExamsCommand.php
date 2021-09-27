@@ -52,7 +52,7 @@ class ExamsCommand extends Command
             $id = $exam->getIdExam();
             $firstname = $exam->getFirstName();
             $lastname = $exam->getLastName();
-            $mark = $exam->getMark();
+            $mark = $exam->getData('mark');//Para que no afecte el plugin que creamos anteriormente
             $registro = sprintf("%2d | %5.2f | %-15s | %-10s", $id, $mark, $firstname, $lastname);
             $output->writeln( $registro );
         }
