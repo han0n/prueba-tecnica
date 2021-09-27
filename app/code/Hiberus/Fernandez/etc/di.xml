@@ -17,5 +17,12 @@
     <type name="Hiberus\Fernandez\Model\Exam">
         <plugin name="mark_plugin" type="Hiberus\Fernandez\Plugin\MarkPlugin" sortOrder="1" disabled="false" />
     </type>
-
+    <!--Declaración del comando CLI-->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="exams_command" xsi:type="object">Hiberus\Fernandez\Console\ExamsCommand</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
