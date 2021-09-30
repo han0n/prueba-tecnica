@@ -21,7 +21,7 @@ class UpgradeData implements UpgradeDataInterface
     {
         $setup->startSetup();
 
-        if ($context->getVersion() && version_compare($context->getVersion(), '1.2.0') < 0
+        if ($context->getVersion() && version_compare($context->getVersion(), '1.2.5') < 0
         ) {
             $tableName = $setup->getTable('hiberus_exam');
 
@@ -29,39 +29,37 @@ class UpgradeData implements UpgradeDataInterface
                 [
                     'firstname' => 'Carlos',
                     'lastname' => 'Fernández',
-                    'mark' => 8,
                 ],
                 [
                     'firstname' => 'Carlos Gabriel',
                     'lastname' => 'Jiménez',
-                    'mark' => 9.55,
                 ],
                 [
                     'firstname' => 'Tamara',
                     'lastname' => 'Armingol',
-                    'mark' => 9.09,
                 ],
                 [
                     'firstname' => 'Toni',
                     'lastname' => 'Varela',
-                    'mark' => 10,
                 ],
                 [
                     'firstname' => 'Javier',
                     'lastname' => 'Soto',
-                    'mark' => 6.66,
                 ],
                 [
                     'firstname' => 'Homer',
                     'lastname' => 'Simpson',
-                    'mark' => 2.40,
                 ],
                 [
                     'firstname' => 'Bob',
                     'lastname' => 'Esponja',
-                    'mark' => 1.99,
                 ],
             ];
+
+            //Generación de decimales del 0.00 al 10.00
+            foreach ($data as $key => $value) {
+                $data[$key]['mark'] = rand(0, 1000)/100;
+            }
 
             $setup
                 ->getConnection()
