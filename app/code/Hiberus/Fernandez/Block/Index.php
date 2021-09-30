@@ -58,7 +58,7 @@ class Index extends \Magento\Framework\View\Element\Template
             if($n == 0){
                 $bestExam = $exam;
             }else{
-                if ($exam->getMark() > $_exam->getMark()){
+                if ($exam->getData('mark') > $_exam->getData('mark')){
                     $bestExam = $exam;
                 }
             }
@@ -99,7 +99,7 @@ class Index extends \Magento\Framework\View\Element\Template
                 if($n == 0){
                     $bestExam = $exam;
                 }else{
-                    if ($exam->getMark() > $_exam->getMark()) {
+                    if ($exam->getData('mark') > $_exam->getData('mark')) {
                         $bestExam = $exam;
                     }
                 }
@@ -126,7 +126,7 @@ class Index extends \Magento\Framework\View\Element\Template
                     if ($n == 0) {
                         $bestExam = $exam;
                     } else {
-                        if ($exam->getMark() > $_exam->getMark()) {
+                        if ($exam->getData('mark') > $_exam->getData('mark')) {
                             $bestExam = $exam;
                         }
                     }

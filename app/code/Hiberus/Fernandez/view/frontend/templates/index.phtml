@@ -14,49 +14,51 @@ $sumaNotas = 0;
 $media = 0;
 ?>
 
-<button id="toggle">Ocultar listado</button>
-<button id="btn-alert">Nota más alta</button>
+<div id="content">
+    <button id="toggle">Ocultar listado</button>
+    <button id="btn-alert">Nota más alta</button>
 
-<div id="listado-notas">
-    <h2 class="title">Listado de notas:</h2>
+    <div id="listado-notas">
+        <h2 class="title">Listado de notas:</h2>
 
-    <ul>
-        <?php foreach ($marks as $mark): ?>
-            <?php if ($total < $max || $max == null){ ?>
-                <!--Para el ejercicio 13-->
-                <?php if ( $mark->getIdExam() == $mejorExamen->getIdExam()  ||
-                           $mark->getIdExam() == $segundoMejor->getIdExam() ||
-                           $mark->getIdExam() == $terceroMejor->getIdExam() ){ ?>
-                    <li class="mejores
-                    <?php if ($mark->getMark() >= $aprobado){ ?>
-                        aprobado">
-                    <?php } else { ?>
-                        suspenso">
-                    <?php } ?>
-                    <?php
-                }else{
-                    ?>
-                    <?php if ($mark->getMark() >= $aprobado){ ?>
-                        <li class="aprobado">
-                    <?php } else { ?>
-                        <li class="suspenso">
-                    <?php }
-                } ?>
-                <?php echo $mark->getFirstName() . " "; ?>
-                <?php echo $mark->getLastName() . " "; ?>
-                <?php echo $mark->getMark(); ?>
-                </li>
-                <?php $sumaNotas = $sumaNotas + $mark->getMark();?>
-                <?php $total++; ?>
-            <?php } ?>
-        <?php endforeach; ?>
-    </ul>
+        <ul>
+            <?php foreach ($marks as $mark): ?>
+                <?php if ($total < $max || $max == null){ ?>
+                    <!--Para el ejercicio 13-->
+                    <?php if ( $mark->getIdExam() == $mejorExamen->getIdExam()  ||
+                               $mark->getIdExam() == $segundoMejor->getIdExam() ||
+                               $mark->getIdExam() == $terceroMejor->getIdExam() ){ ?>
+                        <li class="mejores
+                        <?php if ($mark->getMark() >= $aprobado){ ?>
+                            aprobado">
+                        <?php } else { ?>
+                            suspenso">
+                        <?php } ?>
+                        <?php
+                    }else{
+                        ?>
+                        <?php if ($mark->getMark() >= $aprobado){ ?>
+                            <li class="aprobado">
+                        <?php } else { ?>
+                            <li class="suspenso">
+                        <?php }
+                    } ?>
+                    <?php echo $mark->getFirstName() . " "; ?>
+                    <?php echo $mark->getLastName() . " "; ?>
+                    <?php echo $mark->getMark(); ?>
+                    </li>
+                    <?php $sumaNotas = $sumaNotas + $mark->getMark();?>
+                    <?php $total++; ?>
+                <?php } ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
 
-    <?php $media = $sumaNotas/$total; ?>
-    <p>
-        <?php echo __('Total number of students: ') ?> <?php echo $total .  __('.')?> <br>
-        <?php echo __('Mark average: ') ?> <?php echo number_format($media, 2) ?>
-    </p>
+        <?php $media = $sumaNotas/$total; ?>
+        <p>
+            <?php echo __('Total number of students: ') ?> <?php echo $total .  __('.')?> <br>
+            <?php echo __('Mark average: ') ?> <?php echo number_format($media, 2) ?>
+        </p>
 </div>
 <!--Aquí obtenemos la mejor nota en una etiqueta <p> para pasarsela a la función alert-->
 <p id="nota" style="display: none">

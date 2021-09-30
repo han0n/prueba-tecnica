@@ -12,30 +12,42 @@
 
 .mejores{ text-decoration-line: underline ; }
 
-#listado-notas {
+#content {
     width: max-content;
     font-family: "Courier New", Courier, monospace;
 
-    .title{ font-size: 22px; margin: 12px 0 8px 0; text-align: center}
+    #listado-notas {
+        .title {
+            font-size: 22px;
+            margin: 12px 0 8px 0;
+            text-align: center
+        }
 
-    ul {
-        margin:0; padding: 0;
-        width: max-content;
-        border: #D9D9D9 double 1px;
-        li {
-            margin:0; padding: 5px;
-            padding-top: 9px;
-            list-style: none;
+        ul {
+            margin: 0;
+            padding: 0;
+            width: max-content;
+            border: #D9D9D9 double 1px;
 
+            li {
+                margin: 0;
+                padding: 5px;
+                padding-top: 9px;
+                list-style: none;
+
+            }
+
+            li:nth-child(odd) {
+                margin-left: @margin-left-primary;
+            }
+
+            li:nth-child(even) {
+                background-color: #D9D9D9;
+            }
         }
-        li:nth-child(odd){
-            margin-left: @margin-left-primary;
-        }
-        li:nth-child(even){
-            background-color: #D9D9D9;
-        }
+
     }
-    p{
+    p {
         padding: 10px 0 10px 0;
         font-weight: bold;
         text-align: end;
