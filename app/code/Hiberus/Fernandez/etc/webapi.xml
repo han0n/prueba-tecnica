@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!--Permitir ver todos los datos de la tabla de exámenes-->
+    <route url="/V1/hiberus/exams" method="GET">
+        <service class="Hiberus\Fernandez\Api\ExamRepositoryInterface" method="getAll" />
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <!--Permitir guardar un nuevo alumno y su nota-->
+    <route url="/V1/hiberus/exam/:firstname/:lastname/:mark" method="GET">
+        <service class="Hiberus\Fernandez\Api\ExamRepositoryInterface" method="save" />
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <!--Permitir borrar alumnos por id-->
+    <route url="/V1/hiberus/exam/:idExam" method="GET">
+        <service class="Hiberus\Fernandez\Api\ExamRepositoryInterface" method="deleteById" />
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>

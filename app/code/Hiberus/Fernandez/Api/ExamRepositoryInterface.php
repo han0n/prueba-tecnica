@@ -3,18 +3,22 @@
 namespace Hiberus\Fernandez\Api;
 
 use Hiberus\Fernandez\Api\Data\ExamInterface;
+use Magento\Tests\NamingConvention\true\mixed;
 
 interface ExamRepositoryInterface
 {
 
-    /**
-     * @param \Hiberus\Fernandez\Api\Data\ExamInterface $examInterface
-     * @return \Hiberus\Fernandez\Api\Data\ExamInterface
-     */
-    public function save(ExamInterface $examInterface);
 
     /**
-     * @param $idExam
+     * @param string $firstname
+     * @param string $lastname
+     * @param float $mark
+     * @return \Hiberus\Fernandez\Api\Data\ExamInterface
+     */
+    public function save($firstname, $lastname, $mark);
+
+    /**
+     * @param int $idExam
      * @return \Hiberus\Fernandez\Api\Data\ExamInterface
      */
     public function getById($idExam);
@@ -26,9 +30,14 @@ interface ExamRepositoryInterface
     public function delete(ExamInterface $examInterface);
 
     /**
-     * @param $idExam
+     * @param int $idExam
      * @return bool
      */
     public function deleteById($idExam);
+
+    /**
+     * @return mixed
+     */
+    public function getAll();
 
 }

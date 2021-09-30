@@ -26,13 +26,13 @@ class Exam extends AbstractModel implements ExamInterface
      */
     public function setIdExam($idExam)
     {
-        return $this->setData('entity_id', $idExam);
+        return $this->setData('id_exam', $idExam);
     }
 
     /**
      * @inheritDoc
      */
-    public function getFirstName()
+    public function getFirstname()
     {
         return $this->getData('firstname');
     }
@@ -40,7 +40,7 @@ class Exam extends AbstractModel implements ExamInterface
     /**
      * @inheritDoc
      */
-    public function setFirstName($firstname)
+    public function setFirstname($firstname)
     {
         return $this->setData('firstname', $firstname);
     }
@@ -48,7 +48,7 @@ class Exam extends AbstractModel implements ExamInterface
     /**
      * @inheritDoc
      */
-    public function getLastName()
+    public function getLastname()
     {
         return $this->getData('lastname');
     }
@@ -56,7 +56,7 @@ class Exam extends AbstractModel implements ExamInterface
     /**
      * @inheritDoc
      */
-    public function setLastName($lastname)
+    public function setLastname($lastname)
     {
         return $this->setData('lastname', $lastname);
     }

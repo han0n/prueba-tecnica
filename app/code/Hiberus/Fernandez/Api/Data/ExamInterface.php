@@ -24,24 +24,24 @@ interface ExamInterface extends ExtensibleDataInterface
     /**
      * @return string
      */
-    public function getFirstName();
+    public function getFirstname();
 
     /**
      * @param string $firstName
      * @return $this
      */
-    public function setFirstName($firstName);
+    public function setFirstname($firstName);
 
     /**
      * @return string
      */
-    public function getLastName();
+    public function getLastname();
 
     /**
      * @param string $lastName
      * @return $this
      */
-    public function setLastName($lastName);
+    public function setLastname($lastName);
 
     /**
      * @return float

@@ -26,16 +26,19 @@ class ExamRepository implements ExamRepositoryInterface
     }
 
     /**
-     * @param ExamInterface $exam
+     * @param string $firstname
+     * @param string $lastname
+     * @param float $mark
      * @return ExamInterface
      * @throws CouldNotSaveException
      */
-    public function save(
-        ExamInterface $exam
-    )
+    public function save($firstname, $lastname, $mark)
     {
-
         try {
+            $exam = $this->examInterfaceFactory->create();
+            $exam->setFirstname($firstname);
+            $exam->setLastname($lastname);
+            $exam->setMark($mark);
             $this->resourceExam->save($exam);
         } catch (\Exception $e) {
             throw new CouldNotSaveException(__($e->getMessage()));
@@ -46,8 +49,8 @@ class ExamRepository implements ExamRepositoryInterface
     }
 
     /**
-     * @param $idExam
-     * @return mixed
+     * @param int $idExam
+     * @return ExamInterface
      */
     public function getById($idExam)
     {
@@ -87,4 +90,19 @@ class ExamRepository implements ExamRepositoryInterface
         return $this->delete($this->getById($idExam));
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAll(){
+
+        try {
+            $examModel = $this->examInterfaceFactory->create();
+            $examCollection = $examModel->getCollection()->getData();
+
+        } catch (\Exception $e) {
+            $examModel = $this->examInterfaceFactory->create();
+        }
+
+        return $examCollection;
+    }
 }
