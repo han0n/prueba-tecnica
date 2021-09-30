@@ -6,9 +6,10 @@ $marks = $block->getMarks();
 $total = 0;
 $mejorExamen = $block->getBestExam($marks);
 $media = $block->getMarkAverage($marks);
-$suspenso = 4.9;
+$aprobado = $block->getOK();
 $segundoMejor = $block->getSecondBest($marks);
 $terceroMejor = $block->getThirdBest($marks);
+$max = $block->getMax();
 ?>
 
 <button id="toggle">Ocultar listado</button>
@@ -19,30 +20,32 @@ $terceroMejor = $block->getThirdBest($marks);
 
     <ul>
         <?php foreach ($marks as $mark): ?>
-            <!--Para el ejercicio 13-->
-            <?php if ( $mark->getIdExam() == $mejorExamen->getIdExam()  ||
-                       $mark->getIdExam() == $segundoMejor->getIdExam() ||
-                       $mark->getIdExam() == $terceroMejor->getIdExam() ){ ?>
-                <li class="mejores
-                <?php if ($mark->getMark() > $suspenso){ ?>
-                    aprobado">
-                <?php } else { ?>
-                    suspenso">
-                <?php } ?>
-                <?php
-            }else{
-                ?>
-                <?php if ($mark->getMark() > $suspenso){ ?>
-                    <li class="aprobado">
-                <?php } else { ?>
-                    <li class="suspenso">
-                <?php }
-            } ?>
-            <?php echo $mark->getFirstName() . " "; ?>
-            <?php echo $mark->getLastName() . " "; ?>
-            <?php echo $mark->getMark(); ?>
-            </li>
-            <?php $total++; ?>
+            <?php if ($total < $max || $max == null){ ?>
+                <!--Para el ejercicio 13-->
+                <?php if ( $mark->getIdExam() == $mejorExamen->getIdExam()  ||
+                           $mark->getIdExam() == $segundoMejor->getIdExam() ||
+                           $mark->getIdExam() == $terceroMejor->getIdExam() ){ ?>
+                    <li class="mejores
+                    <?php if ($mark->getMark() >= $aprobado){ ?>
+                        aprobado">
+                    <?php } else { ?>
+                        suspenso">
+                    <?php } ?>
+                    <?php
+                }else{
+                    ?>
+                    <?php if ($mark->getMark() >= $aprobado){ ?>
+                        <li class="aprobado">
+                    <?php } else { ?>
+                        <li class="suspenso">
+                    <?php }
+                } ?>
+                <?php echo $mark->getFirstName() . " "; ?>
+                <?php echo $mark->getLastName() . " "; ?>
+                <?php echo $mark->getMark(); ?>
+                </li>
+                <?php $total++; ?>
+            <?php } ?>
         <?php endforeach; ?>
     </ul>
 

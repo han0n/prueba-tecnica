@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="hiberus" sortOrder="999" translate="label">
+            <label>Hiberus</label>
+        </tab>
+
+        <section id="hiberus_exams" showInDefault="1" sortOrder="10">
+            <label>Exámenes</label>
+            <tab>hiberus</tab>
+            <resource>Hiberus_Fernandez::config</resource>
+            <group id="config" showInDefault="1" sortOrder="10">
+                <label>Configuración</label>
+
+                <field id="max_config" type="text" showInDefault="1" sortOrder="10">
+                    <label>Total de registros listados</label>
+                    <validate>integer</validate>
+                    <comment>Por defecto se listan todos</comment>
+                </field>
+
+                <field id="ok_config" type="text" showInDefault="1" sortOrder="10">
+                    <label>Nota para el aprobado</label>
+                    <validate>validate-number</validate>
+                    <comment>El valor por defecto es 5.0</comment>
+                </field>
+
+            </group>
+        </section>
+
+    </system>
+</config>
