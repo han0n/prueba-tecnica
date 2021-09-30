@@ -5,11 +5,13 @@
 $marks = $block->getMarks();
 $total = 0;
 $mejorExamen = $block->getBestExam($marks);
-$media = $block->getMarkAverage($marks);
+//$media = $block->getMarkAverage($marks);
 $aprobado = $block->getOK();
 $segundoMejor = $block->getSecondBest($marks);
 $terceroMejor = $block->getThirdBest($marks);
 $max = $block->getMax();
+$sumaNotas = 0;
+$media = 0;
 ?>
 
 <button id="toggle">Ocultar listado</button>
@@ -44,11 +46,13 @@ $max = $block->getMax();
                 <?php echo $mark->getLastName() . " "; ?>
                 <?php echo $mark->getMark(); ?>
                 </li>
+                <?php $sumaNotas = $sumaNotas + $mark->getMark();?>
                 <?php $total++; ?>
             <?php } ?>
         <?php endforeach; ?>
     </ul>
 
+    <?php $media = $sumaNotas/$total; ?>
     <p>
         <?php echo __('Total number of students: ') ?> <?php echo $total .  __('.')?> <br>
         <?php echo __('Mark average: ') ?> <?php echo number_format($media, 2) ?>
@@ -79,3 +83,10 @@ $max = $block->getMax();
 
     });
 </script>
+
+<?php //Aquí va el custom Logger
+$writer = new \Zend\Log\Writer\Stream(BP . '/var/log/hiberus_fernandez.log');
+$logger = new \Zend\Log\Logger();
+$logger->addWriter($writer);
+$logger->info('Alumnos que se muestran: '. $total . '. Nota media: ' . number_format($media, 2));
+?>
